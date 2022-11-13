@@ -4,7 +4,6 @@ import com.mailapp.mailapi.modules.campaigns.dao.CampaignRepository;
 import com.mailapp.mailapi.modules.campaigns.dto.CampaignDTO;
 import com.mailapp.mailapi.modules.campaigns.model.Campaign;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

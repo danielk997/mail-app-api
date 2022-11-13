@@ -12,6 +12,4 @@ public class CampaignDTO {
 
     private UUID id;
     private String name;
-
-
 }
