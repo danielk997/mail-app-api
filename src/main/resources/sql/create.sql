@@ -14,7 +14,7 @@ CREATE TABLE SentCampaigns
 (
     id uniqueidentifier not null,
     campaignId uniqueidentifier not null,
-    startDate date not null,
+    startDate datetime not null,
     primary key (id),
     foreign key (campaignId) references Campaigns(id)
 )
@@ -24,7 +24,7 @@ CREATE TABLE Views
 (
     id uniqueidentifier not null,
     sentCampaignId uniqueidentifier not null,
-    viewDate date not null,
+    viewDate datetime not null default getdate(),
     email nvarchar(255) not null,
     primary key (id),
     foreign key (sentCampaignId) references SentCampaigns(id)

@@ -4,8 +4,8 @@ package com.mailapp.mailapi.modules.campaigns.model;
 import com.mailapp.mailapi.modules.campaigns.dto.CampaignDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.SentCampaignDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.ViewDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,10 +16,14 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "VIEWS")
 public class View {
 
     @Id
+    @Type(type="uuid-char")
     @Column(name = "ID")
     private UUID id;
 
@@ -28,7 +32,11 @@ public class View {
     private Date date;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "EMAIL")
+    private String email;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "SENTCAMPAIGNID")
     SentCampaign parent;
 

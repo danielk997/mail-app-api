@@ -17,8 +17,8 @@ public class SentCampaignService {
 
     private final SentCampaignRepository sentCampaignRepository;
 
-    public List<SentCampaignDTO> getAll(UUID id) {
-        return sentCampaignRepository.findAllSentCampaignsByParentId(id).stream().map(SentCampaign::buildDTOFromEntity)
+    public List<SentCampaignDTO> getAll(UUID parentId) {
+        return sentCampaignRepository.findAllSentCampaignsByParentId(parentId).stream().map(SentCampaign::buildDTOFromEntity)
                 .collect(Collectors.toList());
     }
 }

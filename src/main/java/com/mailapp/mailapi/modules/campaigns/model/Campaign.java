@@ -4,6 +4,7 @@ package com.mailapp.mailapi.modules.campaigns.model;
 import com.mailapp.mailapi.modules.campaigns.dto.CampaignDTO;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ import java.util.UUID;
 public class Campaign {
 
     @Id
+    @Type(type="uuid-char")
     @Column(name = "id")
     private UUID id;
 

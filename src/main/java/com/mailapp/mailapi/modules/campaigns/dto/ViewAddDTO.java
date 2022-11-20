@@ -3,6 +3,7 @@ package com.mailapp.mailapi.modules.campaigns.dto;
 
 import com.mailapp.mailapi.modules.campaigns.model.SentCampaign;
 import com.mailapp.mailapi.modules.campaigns.model.View;
+import com.mailapp.mailapi.modules.campaigns.service.SentCampaignService;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,19 +13,20 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ViewDTO {
+public class ViewAddDTO {
 
     private UUID id;
     private Date date;
     private String email;
-    private SentCampaign parent;
+    private UUID parentId;
 
-    public View buildEntityFromDTO() {
+    public View buildEntityFromDTO(SentCampaign sentCampaign) {
         return Optional.of(this)
                 .map(it -> View.builder()
                         .id(getId())
                         .date(getDate())
-                        .parent(getParent())
+                        .email(getEmail())
+                        .parent(sentCampaign)
                         .build()
                 ).orElse(null);
     }
