@@ -18,7 +18,7 @@ public class CampaignController {
     private final CampaignService campaignService;
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping
-    public List<CampaignDTO> getTest() {
+    public List<CampaignDTO> getAll() {
         return campaignService.getAll();
     }
 }

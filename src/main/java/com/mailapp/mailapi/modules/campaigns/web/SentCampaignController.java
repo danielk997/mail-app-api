@@ -17,7 +17,7 @@ public class SentCampaignController {
 
     @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("/{id}")
-    public List<SentCampaignDTO> getTest(@PathVariable UUID id) {
+    public List<SentCampaignDTO> getById(@PathVariable UUID id) {
         return sentCampaignService.getAll(id);
     }
 }

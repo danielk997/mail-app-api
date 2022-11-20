@@ -1,6 +1,6 @@
 package com.mailapp.mailapi.modules.campaigns.web;
 
-import com.mailapp.mailapi.mail.MailSender;
+import com.mailapp.mailapi.mail.MailService;
 import com.mailapp.mailapi.modules.campaigns.dto.ViewAddDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.ViewDTO;
 import com.mailapp.mailapi.modules.campaigns.service.ViewService;
@@ -22,16 +22,17 @@ import java.util.UUID;
 public class ViewController {
 
     private final ViewService viewService;
+    private final MailService mailSender;
 
     @CrossOrigin
     @GetMapping
-    public List<ViewDTO> getTest() {
+    public List<ViewDTO> getAll() {
         return viewService.getAll();
     }
 
     @CrossOrigin
     @GetMapping(value = "/add", params = {"mail", "uuid"})
-    public ViewAddDTO addView(HttpServletRequest http, @RequestParam("mail") String email, @RequestParam("uuid") UUID parentId) {
+    public ViewAddDTO add(HttpServletRequest http, @RequestParam("mail") String email, @RequestParam("uuid") UUID parentId) {
         System.out.println(http);
 
         sendMessage();
@@ -47,11 +48,11 @@ public class ViewController {
     }
 
     private void sendMessage() {
-        JavaMailSenderImpl emailSender = MailSender.getSender();
+        JavaMailSenderImpl emailSender = mailSender.getSender();
         MimeMessage message = emailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(message);
-        String content = "<h2 style=\"color: red\">Test 123</h2>";
+        String content = "<h2 style=\"color: blue\">Test 123</h2>";
 
         try {
             helper.setFrom("test@vp.pl");

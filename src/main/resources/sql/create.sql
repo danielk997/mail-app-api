@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS Views
 DROP TABLE IF EXISTS SentCampaigns
 DROP TABLE IF EXISTS Campaigns
+DROP TABLE IF EXISTS SmtpConfigurations
 
 CREATE TABLE Campaigns
 (
@@ -28,4 +29,15 @@ CREATE TABLE Views
     email nvarchar(255) not null,
     primary key (id),
     foreign key (sentCampaignId) references SentCampaigns(id)
+)
+
+CREATE TABLE SmtpConfigurations
+(
+    id uniqueidentifier not null,
+    host nvarchar(255) not null,
+    userName nvarchar(255) not null,
+    password nvarchar(255) not null,
+    port int not null,
+    active bit default 0,
+    primary key (id),
 )
