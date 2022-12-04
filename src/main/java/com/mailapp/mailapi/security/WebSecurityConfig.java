@@ -16,10 +16,13 @@ public class WebSecurityConfig {
         http.cors();
 
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .oauth2ResourceServer().jwt();
+                .antMatchers("/").permitAll();
+
+//        http.authorizeRequests()
+//                .antMatchers("/").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .oauth2ResourceServer().jwt();
 
         return http.build();
     }
