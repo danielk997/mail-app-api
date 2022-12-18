@@ -21,7 +21,7 @@ import java.util.UUID;
 public class SentCampaign {
 
     @Id
-    @Type(type="uuid-char")
+    @Type(type = "uuid-char")
     @Column(name = "id")
     private UUID id;
 
@@ -33,6 +33,11 @@ public class SentCampaign {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CAMPAIGNID")
     Campaign parent;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEMPLATEID")
+    Template template;
 
     public SentCampaignDTO buildDTOFromEntity() {
         return Optional.of(this)

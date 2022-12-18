@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface SentCampaignRepository extends JpaRepository<SentCampaign, UUID> {
 
-    @Query("from SentCampaign sc join fetch sc.parent p where p.id = :id")
+    @Query("from SentCampaign sc join fetch sc.parent p join fetch sc.template t where p.id = :id and t.id = sc.template.id")
     List<SentCampaign> findAllSentCampaignsByParentId(UUID id);
 
     Optional<SentCampaign> findById(UUID id);

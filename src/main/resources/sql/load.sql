@@ -5,15 +5,23 @@ VALUES (NEWID(), 'Test Campaign 2');
 INSERT INTO Campaigns
 VALUES (NEWID(), 'Test Campaign 3');
 
-DECLARE @Test1Id UNIQUEIDENTIFIER;
-SET @Test1Id = (select id
-                from Campaigns
-                where name like 'Test Campaign 1');
+INSERT INTO Templates
+VALUES (NEWID(), 'Test Template 1', '<h1 style="color: red;">Template works</h1>')
+
+DECLARE @Campaign1Id UNIQUEIDENTIFIER;
+DECLARE @Template1Id UNIQUEIDENTIFIER;
+SET @Campaign1Id = (select id
+                    from Campaigns
+                    where name like 'Test Campaign 1');
+
+SET @Template1Id = (select id
+                    from Templates
+                    where name like 'Test Template 1');
 
 insert into SentCampaigns
-values (NEWID(), @Test1Id, GETDATE());
+values (NEWID(), @Campaign1Id, @Template1Id, GETDATE());
 insert into SentCampaigns
-values (NEWID(), @Test1Id, GETDATE());
+values (NEWID(), @Campaign1Id, @Template1Id, GETDATE());
 
 DECLARE @SentCampaignId UNIQUEIDENTIFIER;
 SET @SentCampaignId = (select top 1 id
