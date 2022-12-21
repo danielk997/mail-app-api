@@ -53,6 +53,7 @@ public class SentCampaign {
                 .map(it -> SentCampaignDTO.builder()
                         .id(getId())
                         .date(getDate())
+                        .status(getStatus())
                         .parent(getParent())
                         .build()
                 ).orElse(null);

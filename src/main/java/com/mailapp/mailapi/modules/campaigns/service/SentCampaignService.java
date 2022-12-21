@@ -23,11 +23,11 @@ public class SentCampaignService {
                 .collect(Collectors.toList());
     }
 
-    public List<SentCampaignDTO> getCampaignsToSend() {
+    public List<SentCampaignDTO> getAll() {
         return sentCampaignRepository.findAll().stream().map(SentCampaign::buildDTOFromEntity)
-                .filter(it -> it.getStatus().equals("PENDING"))
                 .collect(Collectors.toList());
     }
+
 
     public SentCampaignAddDTO add(SentCampaignAddDTO dto) {
         sentCampaignRepository.insert(dto.getCampaignId(), dto.getTemplateId(), dto.getReceiversGroupId());
