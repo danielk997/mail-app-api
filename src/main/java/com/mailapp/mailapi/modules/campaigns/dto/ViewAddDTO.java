@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 public class ViewAddDTO {
 
-    private UUID id;
+    private Long id;
     private Date date;
     private String email;
     private UUID parentId;

@@ -23,7 +23,7 @@ public class TemplateController {
     }
 
     @CrossOrigin
-    @PostMapping()
+    @PostMapping
     public TemplateDTO addTemplate(@RequestBody TemplateAddDTO dto) {
         return templateService.add(dto);
     }

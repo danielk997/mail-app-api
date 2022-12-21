@@ -21,9 +21,8 @@ import java.util.UUID;
 public class Campaign {
 
     @Id
-    @Type(type="uuid-char")
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
     @Column(name = "name")
     @NotNull

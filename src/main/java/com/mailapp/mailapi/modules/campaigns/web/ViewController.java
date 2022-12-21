@@ -38,7 +38,6 @@ public class ViewController {
         sendMessage();
 
         ViewAddDTO dto = ViewAddDTO.builder()
-                .id(UUID.randomUUID())
                 .email(email)
                 .parentId(parentId)
                 .date(new Date())

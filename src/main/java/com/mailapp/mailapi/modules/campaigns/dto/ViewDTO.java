@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 public class ViewDTO {
 
-    private UUID id;
+    private Long id;
     private Date date;
     private String email;
     private SentCampaign parent;

@@ -10,7 +10,7 @@ import java.util.UUID;
 public class SmtpConfigurationDTO {
 
 
-    private UUID id;
+    private Long id;
     private String host;
     private String userName;
     private String password;

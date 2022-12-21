@@ -20,7 +20,6 @@ public class SmtpConfigurationCreateDTO {
     public SmtpConfiguration buildEntityFromDTO() {
         return Optional.of(this)
                 .map(it -> SmtpConfiguration.builder()
-                        .id(UUID.randomUUID())
                         .host(getHost())
                         .userName(getUserName())
                         .password(getPassword())

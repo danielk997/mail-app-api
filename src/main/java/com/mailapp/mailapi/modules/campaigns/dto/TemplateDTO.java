@@ -10,7 +10,7 @@ import java.util.UUID;
 @Builder
 public class TemplateDTO {
 
-    private UUID id;
+    private Long id;
     private String name;
     private String content;
 }

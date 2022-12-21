@@ -4,10 +4,7 @@ import com.mailapp.mailapi.modules.campaigns.dto.TemplateDTO;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,9 +19,9 @@ import java.util.UUID;
 public class Template {
 
     @Id
-    @Type(type = "uuid-char")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
     @Column(name = "NAME")
     @NotNull

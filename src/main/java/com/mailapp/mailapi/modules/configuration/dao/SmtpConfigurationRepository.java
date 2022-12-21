@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-public interface SmtpConfigurationRepository extends JpaRepository<SmtpConfiguration, UUID> {
+public interface SmtpConfigurationRepository extends JpaRepository<SmtpConfiguration, Long> {
 
     SmtpConfiguration getSmtpConfigurationByActive(@NotNull Boolean active);
 }

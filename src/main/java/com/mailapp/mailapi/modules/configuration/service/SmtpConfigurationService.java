@@ -25,7 +25,7 @@ public class SmtpConfigurationService {
         return smtpConfigurationRepository.findAll().stream().map(SmtpConfiguration::buildDTOFromEntity).collect(Collectors.toList());
     }
 
-    public SmtpConfigurationDTO getById(UUID id) {
+    public SmtpConfigurationDTO getById(Long id) {
         return smtpConfigurationRepository.getById(id).buildDTOFromEntity();
     }
 

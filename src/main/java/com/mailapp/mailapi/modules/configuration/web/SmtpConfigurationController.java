@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,7 +21,7 @@ public class SmtpConfigurationController {
     }
 
     @GetMapping("/{id}")
-    public SmtpConfigurationDTO getById(@PathVariable("id") UUID id) {
+    public SmtpConfigurationDTO getById(@PathVariable("id") Long id) {
         return smtpConfigurationService.getById(id);
     }
 

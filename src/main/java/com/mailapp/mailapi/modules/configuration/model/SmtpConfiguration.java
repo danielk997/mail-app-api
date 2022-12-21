@@ -22,9 +22,8 @@ import java.util.UUID;
 public class SmtpConfiguration {
 
     @Id
-    @Type(type = "uuid-char")
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
     @Column(name = "HOST")
     @NotNull

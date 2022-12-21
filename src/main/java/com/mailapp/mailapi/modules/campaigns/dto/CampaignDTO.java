@@ -10,6 +10,6 @@ import java.util.UUID;
 @Builder
 public class CampaignDTO {
 
-    private UUID id;
+    private Long id;
     private String name;
 }

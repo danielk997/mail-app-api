@@ -23,9 +23,8 @@ import java.util.UUID;
 public class View {
 
     @Id
-    @Type(type="uuid-char")
     @Column(name = "ID")
-    private UUID id;
+    private Long id;
 
     @NotNull
     @Column(name = "VIEWDATE")
