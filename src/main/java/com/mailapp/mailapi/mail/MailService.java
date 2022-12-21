@@ -1,5 +1,6 @@
 package com.mailapp.mailapi.mail;
 
+import com.mailapp.mailapi.modules.campaigns.service.SentCampaignService;
 import com.mailapp.mailapi.modules.configuration.dto.SmtpConfigurationDTO;
 import com.mailapp.mailapi.modules.configuration.service.SmtpConfigurationService;
 import lombok.Data;
@@ -13,6 +14,7 @@ import java.util.Properties;
 public class MailService {
 
     private final SmtpConfigurationService smtpConfigurationService;
+    private final SentCampaignService sentCampaignService;
 
     public JavaMailSenderImpl getSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

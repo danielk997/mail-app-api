@@ -1,6 +1,7 @@
 package com.mailapp.mailapi.modules.campaigns.service;
 
 import com.mailapp.mailapi.modules.campaigns.dao.SentCampaignRepository;
+import com.mailapp.mailapi.modules.campaigns.dto.SentCampaignAddDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.SentCampaignDTO;
 import com.mailapp.mailapi.modules.campaigns.model.SentCampaign;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,17 @@ public class SentCampaignService {
     public List<SentCampaignDTO> getAll(UUID parentId) {
         return sentCampaignRepository.findAllSentCampaignsByParentId(parentId).stream().map(SentCampaign::buildDTOFromEntity)
                 .collect(Collectors.toList());
+    }
+
+    public List<SentCampaignDTO> getCampaignsToSend() {
+        return sentCampaignRepository.findAll().stream().map(SentCampaign::buildDTOFromEntity)
+                .filter(it -> it.getStatus().equals("PENDING"))
+                .collect(Collectors.toList());
+    }
+
+    public SentCampaignAddDTO add(SentCampaignAddDTO dto) {
+        sentCampaignRepository.insert(dto.getCampaignId(), dto.getTemplateId(), dto.getReceiversGroupId());
+
+        return dto;
     }
 }

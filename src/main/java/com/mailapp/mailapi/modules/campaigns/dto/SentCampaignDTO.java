@@ -18,6 +18,7 @@ public class SentCampaignDTO {
     private UUID id;
     private Date date;
     private Campaign parent;
+    private String status;
 
     public SentCampaign buildEntityFromDTO() {
         return Optional.of(this)

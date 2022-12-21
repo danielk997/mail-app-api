@@ -1,5 +1,6 @@
 package com.mailapp.mailapi.modules.campaigns.web;
 
+import com.mailapp.mailapi.modules.campaigns.dto.SentCampaignAddDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.SentCampaignDTO;
 import com.mailapp.mailapi.modules.campaigns.service.SentCampaignService;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +20,11 @@ public class SentCampaignController {
     @GetMapping("/{id}")
     public List<SentCampaignDTO> getById(@PathVariable UUID id) {
         return sentCampaignService.getAll(id);
+    }
+
+    @PostMapping
+    public SentCampaignAddDTO addSentCampaign
+            (@RequestBody SentCampaignAddDTO dto) {
+        return sentCampaignService.add(dto);
     }
 }

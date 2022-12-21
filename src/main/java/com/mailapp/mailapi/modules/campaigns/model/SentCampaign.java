@@ -30,6 +30,10 @@ public class SentCampaign {
     private Date date;
 
     @NotNull
+    @Column(name = "STATUS")
+    private String status;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CAMPAIGNID")
     Campaign parent;
@@ -38,6 +42,11 @@ public class SentCampaign {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEMPLATEID")
     Template template;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RECEIVERSGROUPID")
+    Group group;
 
     public SentCampaignDTO buildDTOFromEntity() {
         return Optional.of(this)
