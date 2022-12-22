@@ -13,7 +13,11 @@ import java.util.UUID;
 
 public interface SentCampaignRepository extends JpaRepository<SentCampaign, UUID> {
 
-    @Query("from SentCampaign sc join fetch sc.parent p join fetch sc.template t where p.id = :id and t.id = sc.template.id")
+    @Query("from SentCampaign sc" +
+            " join fetch sc.parent p" +
+            " join fetch sc.template t " +
+            " join fetch sc.group g" +
+            " where p.id = :id")
     List<SentCampaign> findAllSentCampaignsByParentId(UUID id);
 
 
@@ -26,6 +30,12 @@ public interface SentCampaignRepository extends JpaRepository<SentCampaign, UUID
             @Param("templateId") Long templateId,
             @Param("receiversGroupId") Long receiversGroupId
     );
+
+    @Query("from SentCampaign sc" +
+            " join fetch sc.parent p" +
+            " join fetch sc.template t " +
+            " join fetch sc.group g")
+    List<SentCampaign> findAll();
 
     Optional<SentCampaign> findById(UUID id);
 }

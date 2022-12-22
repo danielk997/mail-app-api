@@ -47,22 +47,22 @@ public class ViewController {
     }
 
     private void sendMessage() {
-        JavaMailSenderImpl emailSender = mailSender.getSender();
-        MimeMessage message = emailSender.createMimeMessage();
-
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-        String content = "<h2 style=\"color: blue\">Test 123</h2>";
-
-        try {
-            helper.setFrom("test@vp.pl");
-            helper.setTo("danielkociolek@vp.pl");
-            helper.setSubject("Wiadomość test 1");
-            helper.setText(content, true);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-
-        emailSender.send(message);
+//        JavaMailSenderImpl emailSender = mailSender.getSender();
+//        MimeMessage message = emailSender.createMimeMessage();
+//
+//        MimeMessageHelper helper = new MimeMessageHelper(message);
+//        String content = "<h2 style=\"color: blue\">Test 123</h2>";
+//
+//        try {
+//            helper.setFrom("test@vp.pl");
+//            helper.setTo("danielkociolek@vp.pl");
+//            helper.setSubject("Wiadomość test 1");
+//            helper.setText(content, true);
+//        } catch (MessagingException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        emailSender.send(message);
     }
 }
 //a0c8c5508ca627c2e6eab5b10d2ff336-2de3d545-59e55d55

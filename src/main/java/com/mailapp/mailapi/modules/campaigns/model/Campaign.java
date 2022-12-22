@@ -2,8 +2,7 @@ package com.mailapp.mailapi.modules.campaigns.model;
 
 
 import com.mailapp.mailapi.modules.campaigns.dto.CampaignDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
@@ -17,6 +16,9 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Table(name = "CAMPAIGNS")
 public class Campaign {
 

@@ -54,7 +54,9 @@ public class SentCampaign {
                         .id(getId())
                         .date(getDate())
                         .status(getStatus())
-                        .parent(getParent())
+                        .parent(getParent().buildDTOFromEntity())
+                        .template(getTemplate().buildDTOFromEntity())
+                        .group(getGroup().buildDTOFromEntity())
                         .build()
                 ).orElse(null);
     }
