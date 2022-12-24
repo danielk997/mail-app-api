@@ -28,6 +28,9 @@ public class SentCampaignService {
                 .collect(Collectors.toList());
     }
 
+    public void setAsPending(UUID id) {
+        sentCampaignRepository.updateStatus(id.toString(), "PENDING");
+    }
 
     public SentCampaignAddDTO add(SentCampaignAddDTO dto) {
         sentCampaignRepository.insert(dto.getCampaignId(), dto.getTemplateId(), dto.getReceiversGroupId());

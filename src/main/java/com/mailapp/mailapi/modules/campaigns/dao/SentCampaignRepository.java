@@ -31,6 +31,14 @@ public interface SentCampaignRepository extends JpaRepository<SentCampaign, UUID
             @Param("receiversGroupId") Long receiversGroupId
     );
 
+    @Modifying
+    @Transactional
+    @Query(value = "update SentCampaigns set status = :status where id like :id", nativeQuery = true)
+    void updateStatus(
+            @Param("id") String id,
+            @Param("status") String status
+    );
+
     @Query("from SentCampaign sc" +
             " join fetch sc.parent p" +
             " join fetch sc.template t " +
