@@ -37,6 +37,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.5'
     implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.5'
 
+    implementation 'org.jsoup:jsoup:1.15.3'
 
 
 

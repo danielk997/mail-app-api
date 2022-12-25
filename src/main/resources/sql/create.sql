@@ -68,6 +68,17 @@ CREATE TABLE Views
     foreign key (sentCampaignId) references SentCampaigns (id)
 )
 
+CREATE TABLE Clicks
+(
+    id             BIGINT identity  not null,
+    sentCampaignId UNIQUEIDENTIFIER not null,
+    changeDate       datetime         not null default getdate(),
+    email          nvarchar(255)    not null,
+    url          nvarchar(1024)    not null,
+    primary key (id),
+    foreign key (sentCampaignId) references SentCampaigns (id)
+)
+
 CREATE TABLE SmtpConfigurations
 (
     id       BIGINT identity not null,

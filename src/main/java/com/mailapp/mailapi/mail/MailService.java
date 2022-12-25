@@ -7,6 +7,8 @@ import com.mailapp.mailapi.modules.campaigns.service.SentCampaignService;
 import com.mailapp.mailapi.modules.configuration.dto.SmtpConfigurationDTO;
 import com.mailapp.mailapi.modules.configuration.service.SmtpConfigurationService;
 import lombok.Data;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,6 +19,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Data
@@ -43,21 +46,32 @@ public class MailService {
             SentCampaignDTO toSend = scheduled.get(0);
             sentCampaignService.setAsPending(toSend.getId());
             Long groupId = toSend.getGroup().getId();
+            UUID id = toSend.getId();
             List<PersonDTO> receiversList = personService.getByGroupId(groupId);
             String content = toSend.getTemplate().getContent();
 
+            //Jsoup.parse(toSend.getTemplate().getContent()).getElementsByTag("a").stream().map(it -> it.attr("href", it.attr("href").replace("onet", "xxx"))).collect(Collectors.toList());
+//http://localhost:8080/views/click?mail=x@vp.pl&uuid=3B0BC000-05D5-4207-9E5C-1F18C7E13B0D&redirectURL=https://onet.pl
             receiversList.forEach(it -> {
+                Document doc = Jsoup.parse(content);
+                doc.getElementsByTag("a").forEach(link ->
+                        link.attr("href", link.attr("href").replace(
+                                link.attr("href"), String.format( "http://localhost:8080/views/click?mail=%s&uuid=%s&redirectURL=%s", it.getEmail(), id.toString(), link.attr("href") ))
+                        ));
+
                 try {
                     helper.setFrom("test@vp.pl");
                     helper.setTo(it.getEmail());
                     helper.setSubject("Test 123 123");
-                    helper.setText(content, true);
+                    helper.setText(doc.html(), true);
                 } catch (MessagingException e) {
                     throw new RuntimeException(e);
                 }
 
                 getMailSender().send(message);
             });
+
+            sentCampaignService.setAsFinished(toSend.getId());
         }
     }
 

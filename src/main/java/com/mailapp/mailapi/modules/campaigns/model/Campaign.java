@@ -5,10 +5,7 @@ import com.mailapp.mailapi.modules.campaigns.dto.CampaignDTO;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,6 +20,7 @@ import java.util.UUID;
 public class Campaign {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

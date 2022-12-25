@@ -1,16 +1,14 @@
 package com.mailapp.mailapi.modules.campaigns.web;
 
 import com.mailapp.mailapi.mail.MailService;
+import com.mailapp.mailapi.modules.campaigns.dto.ClickAddDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.ViewAddDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.ViewDTO;
 import com.mailapp.mailapi.modules.campaigns.service.ViewService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +42,28 @@ public class ViewController {
                 .build();
 
         return viewService.add(dto);
+    }
+
+    @GetMapping(value = "/click", params = {"mail", "uuid"})
+    public RedirectView addClick(
+            HttpServletRequest http,
+            @RequestParam("mail") String email,
+            @RequestParam("uuid") UUID parentId,
+            @RequestParam("redirectURL") String redirectURL
+    ) {
+        //http://localhost:8080/views/click?mail=x@vp.pl&uuid=3B0BC000-05D5-4207-9E5C-1F18C7E13B0D&redirectURL=https://onet.pl
+        System.out.println(http);
+
+        ClickAddDTO dto = ClickAddDTO.builder()
+                .email(email)
+                .parentId(parentId)
+                .redirectURL(redirectURL)
+                .build();
+
+        viewService.addClick(dto);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl(redirectURL);
+        return redirectView;
     }
 
     private void sendMessage() {

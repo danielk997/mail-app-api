@@ -19,7 +19,7 @@ SET @Template1Id = (select id
                     where name like 'Test Template 1');
 
 insert into Receivers
-values ('name1', 'mail1@vp.pl');
+values ('name1', 'danielkociolek@vp.pl');
 insert into Receivers
 values ('name2', 'mail2@vp.pl');
 insert into Receivers
@@ -37,10 +37,8 @@ values ('test_group');
 insert into ReceiverGroupLink
 values (1, 1);
 
-insert into SentCampaigns (id, campaignId, templateId, receiversGroupId, startDate)
-values (NEWID(), @Campaign1Id, @Template1Id, 1, GETDATE());
-insert into SentCampaigns (id, campaignId, templateId, receiversGroupId, startDate)
-values (NEWID(), @Campaign1Id, @Template1Id, 1, GETDATE());
+insert into SentCampaigns (id, campaignId, templateId, receiversGroupId, startDate, status)
+values (NEWID(), @Campaign1Id, @Template1Id, 1, GETDATE(), 'FINISHED');
 
 DECLARE @SentCampaignId UNIQUEIDENTIFIER;
 SET @SentCampaignId = (select top 1 id
