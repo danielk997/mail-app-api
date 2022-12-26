@@ -29,8 +29,8 @@ public class ViewService {
     }
 
     public ViewAddDTO add(ViewAddDTO dto) {
-//        SentCampaign sentCampaign = sentCampaignRepository.findById(dto.getParentId()).orElse(null);
-//        viewRepository.saveAndFlush(dto.buildEntityFromDTO(sentCampaign));
+        SentCampaign sentCampaign = sentCampaignRepository.findById(dto.getParentId()).orElse(null);
+        viewRepository.saveAndFlush(dto.buildEntityFromDTO(sentCampaign));
 
         return dto;
     }

@@ -24,6 +24,7 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/views/click").permitAll()
+                .antMatchers("/views/add").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer().jwt();

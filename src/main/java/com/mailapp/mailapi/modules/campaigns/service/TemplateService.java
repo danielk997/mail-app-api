@@ -25,4 +25,18 @@ public class TemplateService {
 
         return addedEntity.buildDTOFromEntity();
     }
+
+    public TemplateDTO update(TemplateDTO dto) {
+        Template templateToUpdate = templateRepository.findById(dto.getId()).orElse(null);
+
+        if (templateToUpdate == null) {
+            return null;
+        }
+
+        templateToUpdate.setName(dto.getName());
+        templateToUpdate.setContent(dto.getContent());
+
+        templateRepository.saveAndFlush(templateToUpdate);
+        return dto;
+    }
 }

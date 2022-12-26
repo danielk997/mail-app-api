@@ -23,6 +23,7 @@ import java.util.UUID;
 public class View {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
