@@ -46,6 +46,7 @@ public class View {
                         .id(getId())
                         .date(getDate())
                         .parent(getParent())
+                        .email(getEmail())
                         .build()
                 ).orElse(null);
     }

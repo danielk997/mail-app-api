@@ -1,7 +1,7 @@
 package com.mailapp.mailapi.modules.campaigns.web;
 
-import com.mailapp.mailapi.mail.MailService;
 import com.mailapp.mailapi.modules.campaigns.dto.ClickAddDTO;
+import com.mailapp.mailapi.modules.campaigns.dto.StatsDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.ViewAddDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.ViewDTO;
 import com.mailapp.mailapi.modules.campaigns.service.ViewService;
@@ -24,10 +24,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("views")
 public class ViewController {
+    //http://localhost:8080/views/stats?uuid=5AE2A273-07BB-414B-ACAC-2B5B601B1E10
 
     private final ViewService viewService;
-    private final MailService mailSender;
-    private ResourceLoader resourceLoader = new DefaultResourceLoader();
+    private final ResourceLoader resourceLoader = new DefaultResourceLoader();
 
     @CrossOrigin
     @GetMapping
@@ -71,5 +71,10 @@ public class ViewController {
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl(redirectURL);
         return redirectView;
+    }
+
+    @GetMapping(value = "/stats", params = {"uuid"})
+    public StatsDTO getStats(@RequestParam("uuid") UUID uuid) {
+        return viewService.getStats(uuid);
     }
 }

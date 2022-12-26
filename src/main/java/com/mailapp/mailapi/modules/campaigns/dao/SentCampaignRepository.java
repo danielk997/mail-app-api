@@ -18,7 +18,7 @@ public interface SentCampaignRepository extends JpaRepository<SentCampaign, UUID
             " join fetch sc.template t " +
             " join fetch sc.group g" +
             " where p.id = :id")
-    List<SentCampaign> findAllSentCampaignsByParentId(UUID id);
+    List<SentCampaign> findAllSentCampaignsByParentId(Long id);
 
 
     @Modifying

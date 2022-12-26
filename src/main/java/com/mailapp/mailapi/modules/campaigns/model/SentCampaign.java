@@ -1,6 +1,7 @@
 package com.mailapp.mailapi.modules.campaigns.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mailapp.mailapi.modules.campaigns.dto.SentCampaignDTO;
 import lombok.*;
 import org.hibernate.annotations.Type;
@@ -40,6 +41,7 @@ public class SentCampaign {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "TEMPLATEID")
     Template template;
 

@@ -2,7 +2,6 @@ package com.mailapp.mailapi.modules.campaigns.model;
 
 
 import com.mailapp.mailapi.modules.campaigns.dto.ClickDTO;
-import com.mailapp.mailapi.modules.campaigns.dto.ViewDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +19,7 @@ import java.util.Optional;
 public class Click {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
@@ -47,6 +46,7 @@ public class Click {
                         .id(getId())
                         .date(Optional.of(getDate()).orElse(new Date()))
                         .url(getUrl())
+                        .email(getEmail())
                         .parent(getParent())
                         .build()
                 ).orElse(null);
