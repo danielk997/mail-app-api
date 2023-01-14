@@ -37,7 +37,7 @@ public class SentCampaignService {
     }
 
     public SentCampaignAddDTO add(SentCampaignAddDTO dto) {
-        sentCampaignRepository.insert(dto.getCampaignId(), dto.getTemplateId(), dto.getReceiversGroupId());
+        sentCampaignRepository.insert(dto.getCampaignId(), dto.getTemplateId(), dto.getSender(), dto.getTitle(), dto.getReceiversGroupId());
 
         return dto;
     }

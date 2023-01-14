@@ -24,8 +24,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("views")
 public class ViewController {
-    //http://localhost:8080/views/stats?uuid=5AE2A273-07BB-414B-ACAC-2B5B601B1E10
-
     private final ViewService viewService;
     private final ResourceLoader resourceLoader = new DefaultResourceLoader();
 

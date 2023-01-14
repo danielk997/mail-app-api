@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS Views
+DROP TABLE IF EXISTS Clicks
 DROP TABLE IF EXISTS SentCampaigns
 DROP TABLE IF EXISTS Campaigns
 DROP TABLE IF EXISTS Templates
@@ -48,6 +49,8 @@ CREATE TABLE SentCampaigns
     id               UNIQUEIDENTIFIER not null,
     campaignId       BIGINT           not null,
     templateId       BIGINT           not null,
+    sender           NVARCHAR(255)    not null,
+    title            NVARCHAR(255)    not null,
     receiversGroupId BIGINT           not null,
     startDate        datetime         not null,
     status           varchar(64)      not null default 'SCHEDULED',
@@ -72,9 +75,9 @@ CREATE TABLE Clicks
 (
     id             BIGINT identity  not null,
     sentCampaignId UNIQUEIDENTIFIER not null,
-    changeDate       datetime         not null default getdate(),
+    changeDate     datetime         not null default getdate(),
     email          nvarchar(255)    not null,
-    url          nvarchar(1024)    not null,
+    url            nvarchar(1024)   not null,
     primary key (id),
     foreign key (sentCampaignId) references SentCampaigns (id)
 )

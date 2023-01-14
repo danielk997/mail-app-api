@@ -35,6 +35,14 @@ public class SentCampaign {
     private String status;
 
     @NotNull
+    @Column(name = "SENDER")
+    private String sender;
+
+    @NotNull
+    @Column(name = "TITLE")
+    private String title;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CAMPAIGNID")
     Campaign parent;
@@ -54,6 +62,8 @@ public class SentCampaign {
         return Optional.of(this)
                 .map(it -> SentCampaignDTO.builder()
                         .id(getId())
+                        .sender(getSender())
+                        .title(getTitle())
                         .date(getDate())
                         .status(getStatus())
                         .parent(getParent().buildDTOFromEntity())

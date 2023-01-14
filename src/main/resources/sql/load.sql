@@ -37,8 +37,8 @@ values ('test_group');
 insert into ReceiverGroupLink
 values (1, 1);
 
-insert into SentCampaigns (id, campaignId, templateId, receiversGroupId, startDate, status)
-values (NEWID(), @Campaign1Id, @Template1Id, 1, GETDATE(), 'FINISHED');
+insert into SentCampaigns (id, campaignId, templateId, receiversGroupId, startDate, status, sender, title)
+values (NEWID(), @Campaign1Id, @Template1Id, 1, GETDATE(), 'FINISHED', 'test', 'test title');
 
 DECLARE @SentCampaignId UNIQUEIDENTIFIER;
 SET @SentCampaignId = (select top 1 id

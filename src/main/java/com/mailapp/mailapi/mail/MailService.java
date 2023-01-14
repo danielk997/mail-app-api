@@ -8,6 +8,7 @@ import com.mailapp.mailapi.modules.configuration.dto.SmtpConfigurationDTO;
 import com.mailapp.mailapi.modules.configuration.service.SmtpConfigurationService;
 import lombok.Data;
 import org.jsoup.Jsoup;
+import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
@@ -62,11 +64,11 @@ public class MailService {
                         ));
 
                 try {
-                    helper.setFrom("test@vp.pl");
+                    helper.setFrom("mailapp@x.com", toSend.getSender());
                     helper.setTo(it.getEmail());
-                    helper.setSubject("Test 123 123");
+                    helper.setSubject(toSend.getTitle());
                     helper.setText(doc.html(), true);
-                } catch (MessagingException e) {
+                } catch (MessagingException | UnsupportedEncodingException e) {
                     throw new RuntimeException(e);
                 }
 
@@ -101,19 +103,3 @@ public class MailService {
         return campaigns.stream().filter(it -> it.getStatus().equals("PENDING")).collect(Collectors.toList());
     }
 }
-//        JavaMailSenderImpl emailSender = mailSender.getSender();
-//        MimeMessage message = emailSender.createMimeMessage();
-//
-//        MimeMessageHelper helper = new MimeMessageHelper(message);
-//        String content = "<h2 style=\"color: blue\">Test 123</h2>";
-//
-//        try {
-//            helper.setFrom("test@vp.pl");
-//            helper.setTo("danielkociolek@vp.pl");
-//            helper.setSubject("Wiadomość test 1");
-//            helper.setText(content, true);
-//        } catch (MessagingException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        emailSender.send(message);

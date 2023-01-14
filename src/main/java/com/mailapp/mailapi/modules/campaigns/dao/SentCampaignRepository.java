@@ -23,11 +23,13 @@ public interface SentCampaignRepository extends JpaRepository<SentCampaign, UUID
 
     @Modifying
     @Transactional
-    @Query(value = "insert into SentCampaigns (id, campaignId, templateId, receiversGroupId, startDate) " +
-            "values (NEWID(), :campaignId, :templateId, :receiversGroupId,  GETDATE())", nativeQuery = true)
+    @Query(value = "insert into SentCampaigns (id, campaignId, templateId, sender, title, receiversGroupId, startDate) " +
+            "values (NEWID(), :campaignId, :templateId, :sender, :title, :receiversGroupId,  GETDATE())", nativeQuery = true)
     void insert(
             @Param("campaignId") Long campaignId,
             @Param("templateId") Long templateId,
+            @Param("sender") String sender,
+            @Param("title") String title,
             @Param("receiversGroupId") Long receiversGroupId
     );
 
