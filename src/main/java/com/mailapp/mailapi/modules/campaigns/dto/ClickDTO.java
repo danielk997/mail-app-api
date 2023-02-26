@@ -19,14 +19,4 @@ public class ClickDTO {
     private SentCampaign parent;
     private String url;
 
-    public Click buildEntityFromDTO() {
-        return Optional.of(this)
-                .map(it -> Click.builder()
-                        .id(getId())
-                        .date(getDate())
-                        .url(getUrl())
-                        .parent(getParent())
-                        .build()
-                ).orElse(null);
-    }
 }

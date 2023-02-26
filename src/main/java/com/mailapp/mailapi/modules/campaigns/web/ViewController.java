@@ -22,7 +22,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("views")
+@RequestMapping("stats")
 public class ViewController {
     private final ViewService viewService;
     private final ResourceLoader resourceLoader = new DefaultResourceLoader();
@@ -34,7 +34,7 @@ public class ViewController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/add", params = {"mail", "uuid"}, produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(value = "/view", params = {"mail", "uuid"}, produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] add(HttpServletRequest http, @RequestParam("mail") String email, @RequestParam("uuid") UUID parentId) {
         ViewAddDTO dto = ViewAddDTO.builder()
                 .email(email)

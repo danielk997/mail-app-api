@@ -1,7 +1,5 @@
 package com.mailapp.mailapi.modules.campaigns.dao;
 
-import com.mailapp.mailapi.modules.campaigns.model.Click;
-import com.mailapp.mailapi.modules.campaigns.model.SentCampaign;
 import com.mailapp.mailapi.modules.campaigns.model.View;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

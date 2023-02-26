@@ -34,6 +34,8 @@ CREATE TABLE ReceiverGroupLink
 (
     receiverId BIGINT not null,
     groupId    BIGINT not null,
+    foreign key (receiverId) references Receivers (id),
+    foreign key (groupId) references ReceiverGroup (id)
 )
 
 CREATE TABLE Templates

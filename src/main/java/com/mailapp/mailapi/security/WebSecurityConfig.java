@@ -18,9 +18,8 @@ public class WebSecurityConfig {
         http.cors();
 
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/views/click").permitAll()
-                .antMatchers("/views/add").permitAll()
+                .antMatchers("/stats/click").permitAll()
+                .antMatchers("/stats/view").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer().jwt();
@@ -38,5 +37,4 @@ public class WebSecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 }

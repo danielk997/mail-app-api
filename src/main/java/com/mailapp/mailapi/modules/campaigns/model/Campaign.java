@@ -3,12 +3,10 @@ package com.mailapp.mailapi.modules.campaigns.model;
 
 import com.mailapp.mailapi.modules.campaigns.dto.CampaignDTO;
 import lombok.*;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -37,3 +35,4 @@ public class Campaign {
                 ).orElse(null);
     }
 }
+

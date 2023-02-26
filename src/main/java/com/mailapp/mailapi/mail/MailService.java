@@ -8,9 +8,9 @@ import com.mailapp.mailapi.modules.configuration.dto.SmtpConfigurationDTO;
 import com.mailapp.mailapi.modules.configuration.service.SmtpConfigurationService;
 import lombok.Data;
 import org.jsoup.Jsoup;
-import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,7 +23,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Data
 @Service
@@ -32,8 +31,9 @@ public class MailService {
     private final SmtpConfigurationService smtpConfigurationService;
     private final SentCampaignService sentCampaignService;
     private final PersonService personService;
-
     private final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    @Value("${baseUrl}")
+    private String baseUrl;
 
 
     @Scheduled(fixedRate = 1000 * 30)
@@ -43,7 +43,7 @@ public class MailService {
         List<SentCampaignDTO> pending = getPendingCampaigns(campaigns);
 
 
-        if (scheduled.size() > 0 && pending.size() == 0) {
+        if (!scheduled.isEmpty() && pending.isEmpty()) {
             MimeMessage message = getMailSender().createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
             SentCampaignDTO toSend = scheduled.get(0);
@@ -56,11 +56,11 @@ public class MailService {
             receiversList.forEach(it -> {
                 Document doc = Jsoup.parse(content);
                 Element pixel = doc.createElement("img");
-                pixel.attr("src", String.format("http://localhost:8080/views/add?mail=%s&uuid=%s", it.getEmail(), id.toString()));
+                pixel.attr("src", String.format("%s/stats/view?mail=%s&uuid=%s", baseUrl, it.getEmail(), id.toString()));
                 doc.appendChild(pixel);
                 doc.getElementsByTag("a").forEach(link ->
                         link.attr("href", link.attr("href").replace(
-                                link.attr("href"), String.format("http://localhost:8080/views/click?mail=%s&uuid=%s&redirectURL=%s", it.getEmail(), id.toString(), link.attr("href")))
+                                link.attr("href"), String.format("%s/stats/click?mail=%s&uuid=%s&redirectURL=%s",baseUrl, it.getEmail(), id.toString(), link.attr("href")))
                         ));
 
                 try {
@@ -96,10 +96,10 @@ public class MailService {
     }
 
     private List<SentCampaignDTO> getScheduledCampaigns(List<SentCampaignDTO> campaigns) {
-        return campaigns.stream().filter(it -> it.getStatus().equals("SCHEDULED")).collect(Collectors.toList());
+        return campaigns.stream().filter(it -> it.getStatus().equals("SCHEDULED")).toList();
     }
 
     private List<SentCampaignDTO> getPendingCampaigns(List<SentCampaignDTO> campaigns) {
-        return campaigns.stream().filter(it -> it.getStatus().equals("PENDING")).collect(Collectors.toList());
+        return campaigns.stream().filter(it -> it.getStatus().equals("PENDING")).toList();
     }
 }

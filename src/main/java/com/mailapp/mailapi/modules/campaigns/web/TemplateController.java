@@ -1,7 +1,6 @@
 package com.mailapp.mailapi.modules.campaigns.web;
 
 
-import com.mailapp.mailapi.modules.campaigns.dto.CampaignDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.TemplateAddDTO;
 import com.mailapp.mailapi.modules.campaigns.dto.TemplateDTO;
 import com.mailapp.mailapi.modules.campaigns.service.TemplateService;

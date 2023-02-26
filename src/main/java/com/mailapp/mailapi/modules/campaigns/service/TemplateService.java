@@ -17,7 +17,7 @@ public class TemplateService {
     private final TemplateRepository templateRepository;
 
     public List<TemplateDTO> getAll() {
-        return templateRepository.findAll().stream().map(Template::buildDTOFromEntity).collect(Collectors.toList());
+        return templateRepository.findAll().stream().map(Template::buildDTOFromEntity).toList();
     }
 
     public TemplateDTO add(TemplateAddDTO dto) {
