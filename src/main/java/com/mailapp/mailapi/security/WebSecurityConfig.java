@@ -24,6 +24,10 @@ public class WebSecurityConfig {
                 .and()
                 .oauth2ResourceServer().jwt();
 
+//        http.authorizeRequests()
+//                .antMatchers("/*").permitAll()
+//                .antMatchers("*").permitAll();
+
         return http.build();
     }
 

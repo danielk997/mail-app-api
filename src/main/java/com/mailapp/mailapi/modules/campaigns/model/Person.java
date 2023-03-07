@@ -2,16 +2,17 @@ package com.mailapp.mailapi.modules.campaigns.model;
 
 
 import com.mailapp.mailapi.modules.campaigns.dto.PersonDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Entity
-@Getter
-@Setter
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "RECEIVERS")
 public class Person {
 

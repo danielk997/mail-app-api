@@ -64,7 +64,7 @@ public class MailService {
                         ));
 
                 try {
-                    helper.setFrom("mailapp@x.com", toSend.getSender());
+                    helper.setFrom(mailSender.getUsername(), toSend.getSender());
                     helper.setTo(it.getEmail());
                     helper.setSubject(toSend.getTitle());
                     helper.setText(doc.html(), true);
